@@ -17,6 +17,7 @@
 /tmp
 
 # Extra files to ignore
+.byebug_history
 doc/
 *.swp
 *~
