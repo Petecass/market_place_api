@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
-  let(:user_response) { JSON.parse(response.body) }
+  let(:user_response) { json_response }
   before(:each) do
     request.headers['Accept'] = 'application/vnd.marketplace.v1'
   end
@@ -13,7 +13,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     it 'returns the info about reporter on a hash' do
-      user_response = JSON.parse(response.body)
       expect(user_response['email']).to eq user.email
     end
 
@@ -28,7 +27,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it 'renders the json representation for the user record just created' do
-        user_response = JSON.parse(response.body, symobolize_names: true)
         expect(user_response['email']).to eq user_attributes[:email]
       end
 
@@ -42,12 +40,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it 'renders an error JSON' do
-        user_response = JSON.parse(response.body, symobolize_names: true)
         expect(user_response).to have_key('errors')
       end
 
       it 'renders the json errors on why the user could not be created' do
-        user_response = JSON.parse(response.body, symobolize_names: true)
         expect(user_response['errors']['email']).to include "can't be blank"
       end
 
@@ -84,7 +80,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user_response['errors']['email']).to include 'is invalid'
       end
 
-      it { is_expected.to respond_with 422 }
+      it { should respond_with 422 }
     end
   end
 
