@@ -5,7 +5,7 @@ ruby '2.3.1'
 gem 'rails', '5.0.0'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', github: 'rails/sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -17,15 +17,15 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 
 # Api gems
-gem 'active_model_serializers'
+gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 # Authentication
 gem 'devise'
 
 # sabisu gem and dependencies
-gem 'sabisu_rails', github: "Petecass/sabisu-rails"
+gem 'sabisu_rails', github: 'Petecass/sabisu-rails'
 gem 'compass-rails'
-gem 'furatto'
+gem 'furatto', github: 'Petecass/furatto-rails'
 gem 'font-awesome-rails'
 gem 'simple_form'
 
