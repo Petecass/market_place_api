@@ -22,6 +22,13 @@ gem 'active_model_serializers'
 # Authentication
 gem 'devise'
 
+# sabisu gem and dependencies
+gem 'sabisu_rails', github: "Petecass/sabisu-rails"
+gem 'compass-rails'
+gem 'furatto'
+gem 'font-awesome-rails'
+gem 'simple_form'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
