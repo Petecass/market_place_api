@@ -30,7 +30,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   # config.include Devise::Test::ControllerHelpers
-  # config.include Devise::TestHelpers
+  config.include Devise::TestHelpers
   config.include Request::JsonHelpers, type: :controller
   config.include Request::HeadersHelpers, type: :controller
 
