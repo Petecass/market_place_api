@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
   let(:user_response) { json_response }
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
 
   describe 'GET #show' do
     before(:each) do
@@ -51,6 +51,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe 'PUT/PATCH #update' do
     context 'when is successfully updated' do
       before(:each) do
+        api_authorization_header(user.auth_token)
         patch :update, params: { id: user.id,
                                  user: { email: 'new@email.com' } }
       end
@@ -64,6 +65,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     context 'when is not created' do
       before(:each) do
+        api_authorization_header(user.auth_token)
         patch :update, params: { id: user.id,
                                  user: { email: 'bademail.com' } }
       end
@@ -82,6 +84,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe 'DELETE #destroy' do
     before(:each) do
+      api_authorization_header(user.auth_token)
       delete :destroy, params: { id: user.id }
     end
 
