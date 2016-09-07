@@ -19,6 +19,8 @@ RSpec.describe User, type: :model do
     is_expected.to validate_uniqueness_of(:auth_token)
     # is_expected.to validate_confirmation_of(:password)
     is_expected.to allow_value('wookie@chewy.com').for(:email)
+
+    is_expected.to have_many :products
   end
 
   describe '#generate_authentication_token!' do
@@ -34,6 +36,21 @@ RSpec.describe User, type: :model do
       @user.generate_authentication_token!
       expect(@user.auth_token).not_to be nil
       expect(@user.auth_token).not_to eq existing_user.auth_token
+    end
+  end
+
+  describe 'product association' do
+    before(:each) do
+      @user.save
+      3.times { create(:product, user: @user) }
+    end
+
+    it 'destroys the associated products upon deletion of User' do
+      products = @user.products
+      @user.destroy
+      products.each do |p|
+        expect(Product.find(p.id)).to raise_error ActiveRecord::RecordNotFound
+      end
     end
   end
 end
