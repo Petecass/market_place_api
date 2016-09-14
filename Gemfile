@@ -36,12 +36,12 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
   gem 'shoulda-matchers'
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'ffaker'
   gem 'sqlite3'
   gem 'byebug'
 end
